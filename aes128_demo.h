@@ -5,7 +5,8 @@
 #include "aes128_cbc_soft.h"
 #include "aes128_ecb.h"
 #include "aes128_ecb_soft.h"
-#include "../uCosmos/console.h"
+#include "../uCosmos/uCosmos.h"
+#include "../_config/aes128_config.h"
 
 namespace aes128_demo {
 	#if AES128_USE_ECB

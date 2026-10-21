@@ -2,8 +2,8 @@
 #define AES128_ECB_SOFT_H_
 #if COMPONENT_CIPHER_AES128
 
-#include "esp_log.h"
-#include "aes128_config.h"
+#include "../uCosmos/uCosmos.h"
+#include "../_config/aes128_config.h"
 #include "aes/esp_aes.h"
 
 #if AES128_USE_ECB_SOFT
