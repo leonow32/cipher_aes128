@@ -4,7 +4,6 @@
 
 #include "../uCosmos/uCosmos.h"
 #include "../_config/aes128_config.h"
-#include "aes/esp_aes.h"
 
 #if AES128_USE_ECB_SOFT
 namespace aes128_ecb_soft {

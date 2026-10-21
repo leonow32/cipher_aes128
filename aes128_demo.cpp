@@ -3,7 +3,19 @@
 #include "aes128_demo.h"
 #if AES128_USE_DEMO_COMMANDS
 
+#if PICO_RP2040 || PICO_RP2350
+	#include "pico/stdlib.h"
+#endif
+
 namespace aes128_demo {
+
+static int64_t get_time_us(void) {
+	#if ESP_PLATFORM
+		return get_time_us();
+	#else
+		return time_us_64();
+	#endif
+}
 
 #if AES128_USE_ECB
 
@@ -18,9 +30,9 @@ void aes128_ecb_encrypt_cmd(int argc, char * argv[]) {
 	size_t length;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_ecb::encrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 	
 	printf("ciphertext[%u]: ", length);
 
@@ -37,9 +49,9 @@ void aes128_ecb_decrypt_cmd(int argc, char * argv[]) {
 	size_t length = 0;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_ecb::decrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 
 	printf("plaintext[%u]: ", length);
 
@@ -65,9 +77,9 @@ void aes128_ecb_soft_encrypt_cmd(int argc, char * argv[]) {
 	size_t length;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_ecb_soft::encrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 	
 	printf("ciphertext[%u]: ", length);
 
@@ -84,9 +96,9 @@ void aes128_ecb_soft_decrypt_cmd(int argc, char * argv[]) {
 	size_t length = 0;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_ecb_soft::decrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 
 	printf("plaintext[%u]: ", length);
 
@@ -112,9 +124,9 @@ void aes128_cbc_encrypt_cmd(int argc, char * argv[]) {
 	size_t length;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_cbc::encrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 	
 	printf("ciphertext[%u]: ", length);
 
@@ -130,9 +142,9 @@ void aes128_cbc_decrypt_cmd(int argc, char * argv[]) {
 	size_t length = 0;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_cbc::decrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 
 	printf("plaintext[%u]: ", length);
 
@@ -158,9 +170,9 @@ void aes128_cbc_soft_encrypt_cmd(int argc, char * argv[]) {
 	size_t length;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_cbc_soft::encrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 	
 	printf("ciphertext[%u]: ", length);
 
@@ -177,9 +189,9 @@ void aes128_cbc_soft_decrypt_cmd(int argc, char * argv[]) {
 	size_t length = 0;
 	if(parse_hex_string(argv[1], data, &length, sizeof(data))) return;
 
-	uint64_t time_1 = esp_timer_get_time();
+	uint64_t time_1 = get_time_us();
 	aes128_cbc_soft::decrypt(data, data, length);
-	uint64_t time_2 = esp_timer_get_time();
+	uint64_t time_2 = get_time_us();
 
 	printf("plaintext[%u]: ", length);
 

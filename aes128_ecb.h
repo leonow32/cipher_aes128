@@ -4,9 +4,9 @@
 
 #include "../uCosmos/uCosmos.h"
 #include "../_config/aes128_config.h"
+#if AES128_USE_ECB
 #include "aes/esp_aes.h"
 
-#if AES128_USE_ECB
 namespace aes128_ecb {
 	// Ciphertext and plaintext must not be the same pointers.
 	// Length must be a multiple of 16 bytes.
