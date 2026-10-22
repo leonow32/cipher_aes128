@@ -9,11 +9,14 @@
 
 namespace aes128_demo {
 
-static int64_t get_time_us(void) {
+static inline uint64_t get_time_us(void) {
 	#if ESP_PLATFORM
-		return get_time_us();
-	#else
+		return uint64_t(esp_timer_get_time());
+	#elif PICO_RP2040 || PICO_RP2350
 		return time_us_64();
+	#else
+		#warning "Platform not supported"
+		return 0;
 	#endif
 }
 
