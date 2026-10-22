@@ -1,4 +1,4 @@
-#include "../config.h"
+#include "../_config/_config.h"
 #if COMPONENT_CIPHER_AES128
 #include "aes128_demo.h"
 #if AES128_USE_DEMO_COMMANDS

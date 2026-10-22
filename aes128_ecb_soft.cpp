@@ -1,4 +1,4 @@
-#include "../config.h"
+#include "../_config/_config.h"
 #if COMPONENT_CIPHER_AES128
 #define LOG_LOCAL_LEVEL ESP_LOG_INFO
 #include "aes128_ecb_soft.h"
